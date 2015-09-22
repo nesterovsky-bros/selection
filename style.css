@@ -1,0 +1,75 @@
+﻿.st-container 
+{
+  outline-style: none;
+  display: inline-block;
+  width: 350px;
+  height: 350px;
+}
+
+.st-root 
+{
+  fill: none;
+  pointer-events: all;
+}
+
+.st-background 
+{
+}
+
+.st-image 
+{
+  pointer-events: none;
+}
+
+.st-path 
+{
+  pointer-events: painted;
+  cursor: move;
+  overflow: hidden;
+  fill: #000000;
+  fill-opacity: 0.6;
+  stroke: #000000;
+  stroke-opacity: 0.7;
+  stroke-width: 2px;
+}
+
+.st-vertex 
+{
+  pointer-events: painted;
+  overflow: visible;
+  cursor: move;
+}
+
+.st-vertex[selected] 
+{
+  fill: #0ff;
+  stroke: #00f;
+  stroke-width: 2px;
+}
+
+.st-edge 
+{
+  pointer-events: painted;
+  cursor: default;
+  overflow: visible;
+}
+
+.st-edge[selected] 
+{
+  fill: none;
+  stroke: #0ff;
+  stroke-width: 3px;
+}
+
+.st-selection
+{
+  fill: none;
+  stroke: #0ff;
+  stroke-width: 1.5px;
+}
+
+td 
+{
+  vertical-align: top;
+}
+

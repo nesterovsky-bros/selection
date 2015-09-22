@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <title>Clip path</title>
+</head>
+
+<body>
+
+<svg width="50" height="50" ng-attr-view_box="{{bounds.x}} {{bounds.y}} {{bounds.width}} {{bounds.height}}">
+  <svg width="50" height="50" ng-attr-width="{{width}}" ng-attr-height="{{height}}">
+    <clipPath ng-attr-id="clip-{{$id}}">
+      <path d="" ng-attr-d="{{svgClip}}"/>
+    </clipPath>
+    <image preserveAspectRatio="xMinYMin meet" width="100%" height="100%" xlink:href="" ng-href="{{imageSrc}}" 
+      ng-attr-clip-path="url({{path}}#clip-{{$id}})"/>
+    <path d="" ng-attr-d="{{svgClip}}" class="st-selection" ng-show="selected" ng-style="{ 'stroke-width': (bounds.width / 50 * 1.5) + 'px' }"/>
+  </svg>
+</svg>
+
+</body>
+</html>

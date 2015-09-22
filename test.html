@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <title>Selection test</title>
+  <script>function define(def) { window.SelectionTool = def(); }</script>
+  <script src="js/selection/selectionTool.js"></script>
+  <link type="text/css" rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <table>
+    <tr>
+      <td style="vertical-align: top">
+        <div class="st-container" id="root" tabindex="0">
+          <svg class="st-root" overflow="hidden">
+            <g class="st-background">
+              <image class="st-image" preserveAspectRatio="xMinYMin meet" width="100%" height="100%"/>
+            </g>
+
+            <g class="st-paths"></g>
+
+            <g class="st-edges"></g>
+
+            <g class="st-vertices"></g>
+          </svg>
+        </div>
+      </td>
+      <td style="vertical-align: top">
+        <div id="selections">
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div style="display: none" id="selection-template">
+    <div style="background: pink">
+      <svg width="50" height="50" x="0" y="0">
+        <svg class="st-background" width="100" height="100">
+          <clipPath id="selection-x">
+            <path class="path" d="" />
+          </clipPath>
+          <image class="background-image" preserveAspectRatio="xMinYMin meet" width="100%" height="100%"/>
+        </svg>
+      </svg>
+    </div>
+  </div>
+  <script>
+    var url = "http://ic.pics.livejournal.com/shpilenok/17995238/754169/754169_original.jpg";
+    var tool = new SelectionTool.Root(document.getElementById("root"));
+    var clientWidth = tool.clientRect.width;
+    var imageWidth;
+    var imageHeight;
+
+    tool.imageSrc = url;
+
+    SelectionTool.getImageSize(url, function () {
+    });
+
+    loadImage(url, function(image)
+    {
+      var ds = ["M 177.5 130 L 324 87 L 287 170 L 194 172 L 221 146 L 177.5 130 Z"];
+
+      imageWidth = image.width;
+      imageHeight = image.height;
+
+      var scale = clientWidth / imageWidth;
+
+      ds.forEach(function(d)
+      {
+        tool.insert({ d: SelectionTool.scalePath(d, scale) });
+      });
+    });
+
+    tool.addEventListener("change", updateSelections);
+
+    function loadImage(url, callback)
+    {
+      var image = new Image();
+
+      image.addEventListener("load", function() { callback(image); });
+      image.src = url;
+    }
+
+    function updateSelections()
+    {
+      var selections = document.getElementById("selections");
+
+      while(selections.firstChild)
+      {
+        selections.removeChild(selections.firstChild);
+      }
+
+      var template = document.querySelector("#selection-template > div");
+      var scale = imageWidth / clientWidth;
+
+      for(var i = 0, length = tool.length; i < length; ++i)
+      {
+        var selection = tool.get(i);
+        var node = template.cloneNode(true);
+
+        var svg = node.querySelector("svg");
+        var clipPath = node.querySelector("clipPath");
+        var path = clipPath.querySelector("path");
+        var image = node.querySelector("image");
+        var background = svg.querySelector(".st-background");
+
+        var bounds = SelectionTool.getBBox(selection.d);
+        var svgBounds = svg.viewBox.baseVal;
+        var d = SelectionTool.scalePath(selection.d, scale);
+
+        background.width.baseVal.value = imageWidth;
+        background.height.baseVal.value = imageHeight;
+
+        svgBounds.x = bounds.x * scale;
+        svgBounds.y = bounds.y * scale;
+        svgBounds.width = bounds.width * scale;
+        svgBounds.height = bounds.height * scale;
+
+        clipPath.setAttribute("id", "selection-" + i);
+        path.setAttribute("d", d);
+        image.setAttributeNS(SelectionTool.xlinkns, "href", tool.imageSrc);
+        image.setAttribute("clip-path", "url(#selection-" + i + ")");
+
+        node.appendChild(document.createTextNode(d));
+        selections.appendChild(node);
+      }
+    }
+  </script>
+</body>
+</html>

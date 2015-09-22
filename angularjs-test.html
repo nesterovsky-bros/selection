@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+  <title>Selection test</title>
+  <style type="text/css">.ng-cloak { display: none; }</style>
+  <link type="text/css" rel="stylesheet" href="style.css" />
+</head>
+<body ng-init="
+  selection = [];
+  imageSrc = 'http://ic.pics.livejournal.com/shpilenok/17995238/754169/754169_original.jpg'">
+
+  <table>
+    <tr>
+      <td>
+        <div svg-selection="selection" image-src="imageSrc"></div>
+      </td>
+      <td>
+        <div ng-repeat="item in selection" class="ng-cloak">
+<!--          <input type="checkbox" ng-model="item.selected" />-->
+          <span svg-clip="item.path" image-src="imageSrc" selected="item.selected"
+             ng-click="item.selected = !item.selected"></span>
+          {{item.path}}
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <script data-main="js/main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.js"></script>
+</body>
+</html>
