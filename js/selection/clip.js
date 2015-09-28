@@ -1,4 +1,13 @@
-﻿define(
+﻿/**
+  @copyright 2014-2015 Nesterovsky bros.
+  @module clip
+  
+  @description Module defines a directive svg-clip that is used to 
+    display a single selection.
+
+  svg-clip directive uses template defined in clip.html.
+*/
+define(
   [
     "./module",
     "angular",
@@ -9,6 +18,16 @@
   {
     "use strict";
 
+    /**
+      @ngdoc directive
+      @name svgClip
+      @restrict A
+      @description A selection directive.
+      @scope
+      @param {expression} imageSrc A source url of the image.
+      @param {expression} [selected] A selected indicator.
+      @param {expression} svgClip A clip path.
+     */
     module.directive(
       "svgClip",
       [

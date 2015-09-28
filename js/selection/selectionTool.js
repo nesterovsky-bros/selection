@@ -39,18 +39,18 @@ define(function()
 "use strict";
 
 /**
-  An DOM event handler.
+  @description An DOM event handler.
   @callback EventHandler
   @param {Event} event An event object.
  */
 
 /**
-  Unregister function.
+  @description Unregister function.
   @callback UnregisterFunc
  */
 
 /**
-  An image size callback.
+  @description An image size callback.
   @callback ImageSizeHandler
   @param {object} params A callback params.
   @param {number} params.width An image width.
@@ -62,19 +62,19 @@ define(function()
 var dataId = "nb-st1";
 
 /**
-  SVG namespace.
+  @description SVG namespace.
   @const {string}
  */
 var svgns = "http://www.w3.org/2000/svg";
 
 /**
-  xlink namespace.
+  @description xlink namespace.
   @const {string}
  */
 var xlinkns = "http://www.w3.org/1999/xlink";
 
 /**
- Selection change types.
+ @description Selection change types.
  @enum {string}
 */
 var ChangeType =
@@ -96,8 +96,7 @@ var ChangeType =
 };
 
 /**
-  Gets or sets element's data.
-
+  @description Gets or sets element's data.
   @param {Element} element A DOM element.
   @param {object} value A value to set, or 
     <code>undefined</code> to get value.
@@ -109,7 +108,8 @@ function data(element, value)
 }
 
 /**
-  Registers an event over element, and returns an unregister function.
+  @description Registers an event over element, and 
+    returns an unregister function.
   @param {Element} element A DOM element.
   @param {string} type An event type.
   @param {EventHandler} handler An event handler.
@@ -132,7 +132,7 @@ function on(element, type, handler)
 };
 
 /**
-  Gets image and passes its size into a callback.
+  @description Gets image and passes its size into a callback.
   @param {string} url An image url.
   @param {ImageSizeHandler} callback An image size handler.
   @return {UnregisterFunc} unregister function to prevent running operation.
@@ -165,8 +165,9 @@ function getImageSize(url, callback)
 }
 
 /**
-  Gets the bounding box of the {@link SVGElement} or {@link String}.
-  @param {(SVGElement|String)} path A path as 
+  @description Gets the bounding box 
+    of the {@link SVGElement} or {@link String}.
+  @param {SVGElement|String} path A path as 
     {@link SVGElement} or {@link String}.
   @return {SVGRect} the bounding box
  */
@@ -209,7 +210,7 @@ fields.v = fields.V = ["y"];
 fields.s = fields.S = ["x", "y", "x2", "y2"];
 
 /**
-  Scales the path.
+  @description Scales the path.
   @param {SVGElement|String} path A path to scale in 
     the form of {@link SVGElement} or {@link String}.
   @param {number} scale A scale factor.
@@ -250,7 +251,7 @@ function scalePath(path, scale)
 }
 
 /**
-  A base class to encapsulate SVG elements.  
+  @description A base class to encapsulate SVG elements.  
   @class
  */
 function Item(element)
@@ -264,14 +265,15 @@ Item.prototype = Object.create(null,
   constructor: Item,
 
   /**
-    Encapsulated DOM Element.
+    @description Encapsulated DOM Element.
     @memberof Item
     @property {Element}
    */
   element: { enumerable: true, writable: true, value: null },
 
   /**
-    Gets bounding client rect. @see {@link Element#getBoundingClientRect}.
+    @description Gets bounding client rect. 
+      @see {@link Element#getBoundingClientRect}.
     @memberof Item
     @function
     @returns {DOMRect}
@@ -283,7 +285,8 @@ Item.prototype = Object.create(null,
   },
 
   /**
-    Releases allocated resources and removes element from the tree.
+    @description Releases allocated resources and 
+      removes element from the tree.
     @memberof Item
     @function
    */
@@ -304,7 +307,7 @@ Item.prototype = Object.create(null,
 });
 
 /**
-  Encapsulates whole working area.
+  @description Encapsulates whole working area.
   @class
   @augments Item
   @param {Element} containerElement a container working area.
@@ -341,42 +344,42 @@ Root.prototype = Object.create(Item.prototype,
   constructor: Root,
 
   /**
-    Refers to the container element.
+    @description Refers to the container element.
     @memberof Root
     @property {Element}
    */
   containerElement: { enumerable: true, writable: true, value: null },
 
   /**
-    Refers to the paths container element.
+    @description Refers to the paths container element.
     @memberof Root
     @property {Element}
    */
   pathsElement: { enumerable: true, writable: true, value: null },
 
   /**
-    Refers to the edges container element.
+    @description Refers to the edges container element.
     @memberof Root
     @property {Element}
    */
   edgesElement: { enumerable: true, writable: true, value: null },
 
   /**
-    Refers to the vertices container element.
+    @description Refers to the vertices container element.
     @memberof Root
     @property {Element}
    */
   verticesElement: { enumerable: true, writable: true, value: null },
 
   /**
-    Refers to the image element.
+    @description Refers to the image element.
     @memberof Root
     @property {Element}
    */
   imageElement: { enumerable: true, writable: true, value: null },
 
   /**
-    Gets an array of paths.
+    @description Gets an array of paths.
     Do not directly update path array, but use {@link Root}'s methods 
     to manipulate with selection.
     @memberof Root
@@ -385,7 +388,7 @@ Root.prototype = Object.create(Item.prototype,
   paths: { enumerable: true, writable: true, value: null },
 
   /**
-    Indicates whether the selection is fixed (read only).
+    @description Indicates whether the selection is fixed (read only).
     @memberof Root
     @property {boolean}
    */
@@ -414,7 +417,7 @@ Root.prototype = Object.create(Item.prototype,
   },
 
   /**
-    Registers the specified listener.
+    @description Registers the specified listener.
     @memberof Root
     @function
     @param {string} type An event type to listen for.
@@ -429,7 +432,8 @@ Root.prototype = Object.create(Item.prototype,
   },
 
   /**
-    Removes the event listener previously registered with {@link Root#addEventListener()}.
+    @description Removes the event listener previously registered with 
+      {@link Root#addEventListener}.
     @memberof Root
     @function
     @param {string} type An event type to remove.
@@ -444,7 +448,7 @@ Root.prototype = Object.create(Item.prototype,
   },
 
   /**
-    Triggers "change" event.
+    @description Triggers "change" event.
     @memberof Root
     @function
     @param {ChangeType} action An action type.
@@ -472,7 +476,7 @@ Root.prototype = Object.create(Item.prototype,
   },
 
   /**
-    Image source url.
+    @description Image source url.
     @memberof Root
     @property {string}
    */
@@ -490,7 +494,7 @@ Root.prototype = Object.create(Item.prototype,
   },
 
   /**
-    Get number of paths.
+    @description Get number of paths.
     @memberof Root
     @property {number}
    */
@@ -501,7 +505,7 @@ Root.prototype = Object.create(Item.prototype,
   },
 
   /**
-    Clears path array.
+    @description Clears path array.
     @memberof Root
     @function
    */
@@ -519,7 +523,7 @@ Root.prototype = Object.create(Item.prototype,
   },
 
   /**
-    Gets path by index.
+    @description Gets path by index.
     @memberof Root
     @function
     @param {number} index A path index.
@@ -528,7 +532,7 @@ Root.prototype = Object.create(Item.prototype,
   get: { value: function(index) { return this.paths[index]; } },
 
   /**
-    Inserts a new path.
+    @description Inserts a new path.
     @memberof Root
     @function
     @param {object} options Path options
@@ -570,7 +574,7 @@ Root.prototype = Object.create(Item.prototype,
   },
 
   /**
-    Removes a path with a specified index.
+    @description Removes a path with a specified index.
     @memberof Root
     @function
     @param {number} index A path index.
@@ -592,7 +596,7 @@ Root.prototype = Object.create(Item.prototype,
 });
 
 /**
-  Encapsulates SVG path with overlay.
+  @description Encapsulates SVG path with overlay.
   @class
   @augments Item
   @param {SVGElement} element A SVG path {@link Element}.
@@ -999,28 +1003,28 @@ Path.prototype = Object.create(Item.prototype,
   constructor: Path,
 
   /**
-    Refers to the {@link Root} instance.
+    @description Refers to the {@link Root} instance.
     @memberof Path
     @property {Root}
    */
   root: { enumerable: true, writable: true, value: null },
 
   /**
-    Path edges.
+    @description Path edges.
     @memberof Path
     @property {Array.<Edge>}.
    */
   edges: { enumerable: true, writable: true, value: null },
 
   /**
-    Path vertices.
+    @description Path vertices.
     @memberof Path
     @property {Array.<Vertex>}.
    */
   vertices: { enumerable: true, writable: true, value: null },
 
   /**
-    Gets a SVG path.
+    @description Gets a SVG path.
     @memberof Path
     @property {string}.
    */
@@ -1031,7 +1035,7 @@ Path.prototype = Object.create(Item.prototype,
   },
 
   /**
-    Path selection indicator.
+    @description Path selection indicator.
     @memberof Path
     @property {boolean}.
    */
@@ -1078,7 +1082,7 @@ Path.prototype = Object.create(Item.prototype,
 });
 
 /**
-  Encapsulates a path vertex.
+  @description Encapsulates a path vertex.
   @class
   @augments Item
   @param {SVGElement} element A SVG vertex path.
@@ -1095,14 +1099,14 @@ Vertex.prototype = Object.create(Item.prototype,
   constructor: Vertex,
 
   /**
-    Refers to the {@link Path} instance.
+    @description Refers to the {@link Path} instance.
     @memberof Vertex
     @property {Path}
    */
   path: { enumerable: true, writable: true, value: null },
 
   /**
-    Smooth vertex indicator.
+    @description Smooth vertex indicator.
     When value is true then the line passing through this vertex is smooth;
     otherwise it can be uneven.
     @memberof Vertex
@@ -1111,21 +1115,21 @@ Vertex.prototype = Object.create(Item.prototype,
   smooth: { enumerable: true, writable: true, value: false },
 
   /**
-    A segment of path for which the vertex is a start point.
+    @description A segment of path for which the vertex is a start point.
     @memberof Vertex
     @property {SVGPathSeg}
    */
   segment: { enumerable: true, writable: true, value: null },
 
   /**
-    Incoming {@link Edge}.
+    @description Incoming {@link Edge}.
     @memberof Vertex
     @property {Edge}
    */
   incoming: { enumerable: true, writable: true, value: null },
 
   /**
-    Outgoing {@link Edge}.
+    @description Outgoing {@link Edge}.
     @memberof Vertex
     @property {Edge}
    */
@@ -1150,7 +1154,7 @@ Vertex.prototype = Object.create(Item.prototype,
 });
 
 /**
-  Encapsulates a path edge.
+  @description Encapsulates a path edge.
   @class
   @augments Item
   @param {SVGElement} element A SVG vertex path.
@@ -1167,28 +1171,28 @@ Edge.prototype = Object.create(Item.prototype,
   constructor: Edge,
 
   /**
-    Refers to the {@link Path} instance.
+    @description Refers to the {@link Path} instance.
     @memberof Edge
     @property {Path}
    */
   path: { enumerable: true, writable: true, value: null },
 
   /**
-    A segment of path that corresponds to the edge.
+    @description A segment of path that corresponds to the edge.
     @memberof Edge
     @property {SVGPathSeg}
    */
   segment: { enumerable: true, writable: true, value: null },
 
   /**
-    Start {@link Vertex}.
+    @description Start {@link Vertex}.
     @memberof Edge
     @property {Vertex}ю
    */
   start: { enumerable: true, writable: true, value: null },
 
   /**
-    End {@link Vertex}.
+    @description End {@link Vertex}.
     @memberof Edge
     @property {Vertex}ю
    */
@@ -1213,9 +1217,10 @@ Edge.prototype = Object.create(Item.prototype,
 });
 
 /**
-  Encapsulates shift, rotate and scale transformations of the path.
+  @description Encapsulates shift, rotate and scale transformations 
+    of the path.
   @class
-  @param {(Path|Edge|Vertex)} item to transform.
+  @param {Path|Edge|Vertex} item to transform.
  */
 function Transform(item)
 {
@@ -1297,35 +1302,35 @@ function Transform(item)
 Transform.prototype = Object.create(null,
 {
   /**
-    {@link Path} instance.
+    @description {@link Path} instance.
     @memberof Transform
     @property {Path}
    */
   path: { enumerable: true, writable: true, value: null },
 
   /**
-    The bounding box.
+    @description The bounding box.
     @memberof Transform
     @property {SVGRect}
    */
   bounds: { enumerable: true, writable: true, value: null },
 
   /**
-    Item center on x axis.
+    @description Item center on x axis.
     @memberof Transform
     @property {number}
    */
   cx: { enumerable: true, writable: true, value: null },
 
   /**
-    Item center on y axis.
+    @description Item center on y axis.
     @memberof Transform
     @property {number}
    */
   cy: { enumerable: true, writable: true, value: null },
 
   /**
-    Transforms the item.
+    @description Transforms the item.
     @memberof Transform
     @function
     @param {object} options Transform options.
@@ -1506,7 +1511,7 @@ Transform.prototype = Object.create(null,
 });
 
 /**
-  Creates an {@link Edge} instance.
+  @description Creates an {@link Edge} instance.
   @private
   @param {Path} path A {@link Path} instance.
   @param {number} x X coordinate.
@@ -1537,7 +1542,7 @@ function createEdge(path, x, y, edgeItem, pathItem, index)
 }
 
 /**
-  Creates a {@link Vertex} instance.
+  @description Creates a {@link Vertex} instance.
   @private
   @param {Path} path A {@link Path} instance.
   @param {number} x X coordinate.
@@ -1567,7 +1572,7 @@ function createVertex(path, x, y, segment, index)
 }
 
 /**
-  Gets a segment index.
+  @description Gets a segment index.
   @private
   @param {SVGPathSegList} segments A segments collection.
   @param {SVGPathSeg} segment A segment to get index for.
@@ -1585,7 +1590,7 @@ function segmentIndex(segments, segment)
 }
 
 /**
-  Deletes a {@link Vertex}.
+  @description Deletes a {@link Vertex}.
   @private
   @param {Vertex} vertex A {link Vertex} instance.
  */
@@ -1668,7 +1673,7 @@ function deleteVertex(vertex)
 }
 
 /**
-  Splites an {@link Edge}.
+  @description Splites an {@link Edge}.
   @private
   @param {Edge} edge An edge to split.
   @param {number} x An abscissa of a split point.
@@ -1718,7 +1723,7 @@ function splitEdge(edge, x, y)
 }
 
 /**
-  Creates {@link Path} for a {@link SVGElement}.
+  @description Creates {@link Path} for a {@link SVGElement}.
   @private
   @param {SVGElement} element A {@link SVGElement} instance.
   @param {Root} root A {@link Root} instance.
@@ -1756,7 +1761,7 @@ function createPath(element, root, index)
 }
 
 /**
-  Creates a rectangular {@link Path}.
+  @description Creates a rectangular {@link Path}.
   @private
   @param {Root} root A {@link Root} instance.
   @param {number} left A left abscissa of the rectangle.
@@ -1808,7 +1813,7 @@ var draggingPath = 4;
 var draggingRoot = 8;
 
 /**
-  Drag event handler.
+  @description Drag event handler.
   @private
   @param {Event} event An event instance.
  */
@@ -2050,7 +2055,7 @@ function drag(event)
 }
 
 /**
-  Double click event handler. 
+  @description Double click event handler. 
   @private
   @param {Event} event An event instance.
  */
@@ -2102,7 +2107,7 @@ var keys =
 };
 
 /**
-  A map of key event handlers.  
+  @description A map of key event handlers.  
   @private
 */
 var keymap =
@@ -2335,7 +2340,7 @@ function selectPath(root, path)
 function preventDefault(event) { event.preventDefault(); }
 
 /**
-  Creates a class name for a name id.
+  @description Creates a class name for a name id.
   @param {string} name A name id.
   @returns {string} a class name.
  */
@@ -2345,7 +2350,7 @@ function classFor(name) { return "st-" + name; }
 function selectorFor(name) { return "." + classFor(name); }
 
 /**
-  A module representing a shirt.
+  @description A module representing a shirt.
   @exports selectionTool
  */
 var api =

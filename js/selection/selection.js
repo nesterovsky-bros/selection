@@ -1,4 +1,13 @@
-﻿define(
+﻿/**
+  @copyright 2014-2015 Nesterovsky bros.
+  @module selection 
+  
+  @description This module is angularjs wrapper arround {@link module:selectionTool}.
+
+  Module defines a directive svg-selection.
+  svg-selection directive uses template defined in selection.html.
+*/
+define(
   [
     "./module",
     "angular",
@@ -9,6 +18,19 @@
   {
     "use strict";
 
+    /**
+      @ngdoc directive
+      @name svgSelection
+      @restrict A
+      @description A selection directive.
+      @scope
+      @param {expression} imageSrc A source url of the image.
+      @param {expression} [readonly=false] A boolean readonly indicator.
+      @param {expression} svgSelection An array of selections.
+      @param {string} svgSelection.path A SVG path.
+      @param {boolean} [svgSelection.selected = false] 
+        A path selection indicator.
+     */
     module.directive(
       "svgSelection",
       function()

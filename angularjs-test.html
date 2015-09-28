@@ -16,7 +16,6 @@
       </td>
       <td>
         <div ng-repeat="item in selection" class="ng-cloak">
-<!--          <input type="checkbox" ng-model="item.selected" />-->
           <span svg-clip="item.path" image-src="imageSrc" selected="item.selected"
              ng-click="item.selected = !item.selected"></span>
           {{item.path}}
