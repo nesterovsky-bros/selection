@@ -9,3 +9,19 @@ The samples [test.html](https://rawgit.com/nesterovsky-bros/selection/master/tes
 
 The module is implemented through SVG manipulation. Selection paths are defined in terms of SVG.
 
+The simplest way to know this API is through test pages, and expecting sources.
+
+From the client perspective API allows to:
+
+ - create a new selection - click and drag path;
+ - select/unselect selection - click selection overlay or image area;
+ - move selected path - drag selected overlay, or click arrow keys;
+ - move selected edge - drag selected edge;
+ - move selected vertex - drag selected vertex;
+ - delete selected path - Delete button;
+ - add selection vertex - double click or ctrl + click a selection edge;
+ - remove selection vertex - double click or ctrl + click a selection vertex;
+ - scale selection - shift + drag selection, or shift + arrow keys;
+ - rotate selection - ctrl + drag selection, or ctrl + arrow keys.
+
+
