@@ -9,7 +9,7 @@ There are samples [test.html](https://rawgit.com/nesterovsky-bros/selection/mast
 
 The module is implemented through SVG manipulation. Selection paths are defined in terms of SVG.
 
-The simplest way to know this API is through test pages, and expecting sources.
+The simplest way to start with  this API is through test pages.
 
 From the client perspective API allows to:
 
